@@ -2,64 +2,44 @@
 #include <stdlib.h>
 #include <string>
 using namespace std;
+//Memory Allocation - Common members have common memory & variable members have variable memory #Efficient_Management
 
-class binary{
-	private://All members are private till specified public
-	string s;
-	void chk_bin(void);
-	public:
-		void read(void);
-		
-		void ones(void);
-		void display(void);
+class shop
+{
+	int itemId[100];
+	int itemPrice[100];
+	int counter;
+
+public:
+	void initcounter(void) { counter = 0; }
+	void DisplayPrice(void);
+	void setPrice(void);
 };
-void binary :: read(void){
-	cout<<"Enter a Binary Number"<<endl;
-	cin>>s;
-	chk_bin();//Member Nesting
-}
-void binary :: chk_bin(void){
-	for (int i = 0; i < s.length(); i++)
-	{
-		if (s.at(i)!='0' && s.at(i)!='1'){
-			cout<<endl<<"This is not Binary"<<endl;
-			exit(0);//Use stdlib.h for this, It will terminate the whole programme.
-		}
-	}
-	
-}
-void binary :: ones(void){
-	
-	for (int i = 0; i < s.length(); i++)
-	{
-		if (s.at(i)=='0'){
-			s.at(i)='1';
-		}
-		 else {
-			s.at(i)='0';
-		}
-		
 
-	}
-	
+void shop ::setPrice(void)
+{
+
+	cout << "Enter Id of your item no. " << counter + 1 << endl;
+	cin >> itemId[counter];
+	cout << "Enter Price of your item" << endl;
+	cin >> itemPrice[counter];
+	counter++;
 }
-void binary :: display(void){
-	cout<<endl<<"Displaying Numbers"<<endl;
-	for (int i = 0; i < s.length(); i++)
+void shop ::DisplayPrice(void)
+{
+	for (int i = 0; i < counter; i++)
 	{
-		cout<<s.at(i);
-		
+		cout << "The price of Item with Id " << itemId[i] << " is " << itemPrice[i] << endl;
 	}
-	
 }
 
-int main(){
-	binary b;
-	b.read();
-	// b.chk_bin(); It can't be called
-	b.display();
-	b.ones();
-	b.display();
-
+int main()
+{
+	shop dukan;
+	dukan.initcounter();
+	dukan.setPrice();
+	dukan.setPrice();
+	dukan.setPrice();
+	dukan.DisplayPrice();
 	return 0;
 }
