@@ -1,45 +1,37 @@
 #include <iostream>
 #include <stdlib.h>
-#include <string>
 using namespace std;
-//Memory Allocation - Common members have common memory & variable members have variable memory #Efficient_Management
-
-class shop
+/*Static Data Membeber Variable are property of class and all the  objects of the class share it.
+ Also they are sustained till program is executed.*/
+class Employee
 {
-	int itemId[100];
-	int itemPrice[100];
-	int counter;
+	int id;
+	static int count;
 
 public:
-	void initcounter(void) { counter = 0; }
-	void DisplayPrice(void);
-	void setPrice(void);
+	void setData(void)
+	{
+		cout << "Enter the Id" << endl;
+		cin >> id;
+		count++;
+	}
+	void getData(void)
+	{
+		cout << "The ID of Employee is " << id << " And Number of Employees are " << count << endl;
+	}
+	
 };
 
-void shop ::setPrice(void)
-{
-
-	cout << "Enter Id of your item no. " << counter + 1 << endl;
-	cin >> itemId[counter];
-	cout << "Enter Price of your item" << endl;
-	cin >> itemPrice[counter];
-	counter++;
-}
-void shop ::DisplayPrice(void)
-{
-	for (int i = 0; i < counter; i++)
-	{
-		cout << "The price of Item with Id " << itemId[i] << " is " << itemPrice[i] << endl;
-	}
-}
-
+int Employee ::count; // Default Value is 0. And if it has to be changed it should be changed here(Outside class) not inside class.
+//Count is the static Data member of Employee class
 int main()
 {
-	shop dukan;
-	dukan.initcounter();
-	dukan.setPrice();
-	dukan.setPrice();
-	dukan.setPrice();
-	dukan.DisplayPrice();
+	Employee ayush, tan, mallu;
+	ayush.setData();
+	ayush.getData();
+	tan.setData();
+	tan.getData();
+	mallu.setData();
+	mallu.getData();
 	return 0;
 }
