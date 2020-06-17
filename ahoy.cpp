@@ -1,31 +1,50 @@
 #include <iostream>
 using namespace std;
-class Y;
-class X{
-	int data;
+
+class c2;
+class c1{
+	int val;
+	friend void exchange(c1 &  , c2 & );
 	public:
-		void setValue(int value){
-			data = value;
+		void setval(int a){
+			val = a;
 		}
-	friend void add(X ,Y);
+		void display(void){
+			cout<<"The value of a is "<<val<<endl;
+		}
+};
+class c2{
+	int val;
+	friend void exchange(c1 &  , c2 & );
+	public:
+		void setval(int a){
+			val = a;
+		}
+		void display(void){
+			cout<<"The value of b is "<<val<<endl;
+		}
 };
 
-class Y{
-	int num;
-	public:
-		void setValue(int value){
-			num = value;
-		}
-	friend void add(X ,Y);
-};
-void add(X o1, Y o2){
-	cout<<"The sum of data of X and Y is "<<o1.data+o2.num<<endl;
+void exchange(c1 & x, c2 & y){
+	int tmp = x.val;//Swapping Technique is used. by reference
+	x.val = y.val;
+	y.val = tmp;
 }
+
+
 int main(){
-	X a;
-	Y b;
-	a.setValue(3);
-	b.setValue(5);
-	add(a,b);
+	c1 oc1;
+	c2 oc2;
+
+	oc1.setval(1);
+	oc2.setval(2);
+
+	oc1.display();
+	oc2.display();
+
+	exchange(oc1 , oc2);
+
+	oc1.display();
+	oc2.display();
 	return 0;
 }
