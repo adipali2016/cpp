@@ -1,40 +1,34 @@
 #include <iostream>
-#include <stdlib.h>
 using namespace std;
-//Array of Objects
+//Passing of Objects as Function Arguments
 
-class Employee
-{
-	int id;
-	int salary;
-
-public:
-	void setId(void)
-	{
-		salary = 10000;
-		cout << "Enter the ID of Employee" << endl;
-		cin >> id;
+class complex{
+	int a;
+	int b;
+	public:
+	void setData(int v1, int v2){
+		a = v1;
+		b = v2;
 	}
-	void getId(void)
-	{
-		cout << "The ID of Employee is " << id << endl;
+
+	void setDataBySum(complex o1,complex o2){
+		a = o1.a + o2.a;
+		b = o1.b + o2.b;
+	}
+	void print(void){
+		cout<<"Your complex number is "<<a<<"+"<<b<<"i"<<endl;
 	}
 };
 
-int main()
-{
-	// Employee bishen, tan, mallu, kasshu;
-	// bishen.setId();
-	// bishen.getId();
-	//Intead of  ^ we can  use --> 
-
-	Employee parivaar[4];//Array of Object
-	for (int i = 0; i < 4; i++)
-	{
-
-		parivaar[i].setId();
-		parivaar[i].getId();
-	}
-
+int main(){
+	complex c1, c2, c3;
+	c1.setData(1,2);
+	c1.print();
+	c2.setData(2,3);
+	c2.print();
+	
+	c3.setDataBySum(c1,c2);
+	c3.print();
+	
 	return 0;
 }
