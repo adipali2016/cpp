@@ -1,46 +1,65 @@
 #include <iostream>
 using namespace std;
-/* Friend Functions - 
-	1.Not in the scope of class/ Not a member of class.
-	2.Can't be called from the object of the respective class.
-	3. Can be called without object
-	4. Usually contains objects as arguments.
-	5. Can be declared inside public as well as private section on the class.	
-	6. It can't access the members directly by their names/ object name/member name. 	
-*/ 
+
+class complex; //Forward Delcaration <---Declaring That Compiler will get the respective class in future.--->
+
+//Sequence of arrangement of classes is important!
+class Calculator
+{
+public:
+	int add(int a, int b)
+	{
+		return a + b;
+	}
+	int sumReal(complex, complex);
+	int sumImg(complex, complex);//Declaring only as object members aren't available yet.
+};
 class complex
 {
 private:
 	int a, b;
-public:
-	
-	friend complex sumComlex(complex , complex);//It means that this non member function is allowed to acess my private member.
 
-	void setNumber(int n1,int n2){
+public:
+/*
+<-=========================Friend Function of Other Classes===================->
+//Accessing individual functions as friend.
+	friend int Calculator ::sumReal(complex o1, complex o2);
+	friend int Calculator ::sumImg(complex o1, complex o2);
+*/
+//<=========================Friend Class====================>
+// Allowing whole class to access private data of present Class.
+	friend class Calculator;
+	void setNumber(int n1, int n2)
+	{
 		a = n1;
 		b = n2;
 	}
-	void printNumber(void){
-		cout<<"Your Number is "<<a<<" + "<<b<<"i"<<endl;
+
+	void printNumber(void)
+	{
+		cout << "Your Number is " << a << " + " << b << "i" << endl;
 	}
-
 };
-
-complex sumComlex(complex o1, complex o2){
-	complex o3;
-	o3.setNumber(o1.a + o2.a,o1.b+o2.b);
-	return o3;
+//Defining after class as object members are available here.
+int Calculator ::sumReal(complex o1, complex o2)
+{
+	return (o1.a + o2.a);
+}
+int Calculator ::sumImg(complex o1, complex o2)
+{
+	return (o1.b + o2.b);
 }
 
-
-int main(){
-	complex c1,c2,sum;
-	c1.setNumber(1,4);
-	c1.printNumber();	
-	c2.setNumber(5,8);
-	c2.printNumber();	
-
-	sum = sumComlex(c1,c2);
-	sum.printNumber();
+int main()
+{
+	complex o1, o2;
+	o1.setNumber(1, 4);
+	o2.setNumber(5, 7);
+	Calculator calc;
+	int res = calc.sumReal(o1, o2);
+	cout << "The sum of real part of o1 and o2 is " << res<<endl;
+	
+	int res1 = calc.sumImg(o1, o2);
+	cout << "The sum of Imaginary part of o1 and o2 is " << res1;
 	return 0;
 }
