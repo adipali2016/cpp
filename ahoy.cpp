@@ -1,53 +1,40 @@
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
-/*Static Data Membeber Variable are property of class and all the  objects of the class share it.
- Also they are sustained till program is executed.*/
-//Static Member function can access only static variables.
+//Array of Objects
 
 class Employee
 {
 	int id;
-	static int count;
+	int salary;
 
 public:
-	void setData(void)
+	void setId(void)
 	{
-		cout << "Enter the Id" << endl;
+		salary = 10000;
+		cout << "Enter the ID of Employee" << endl;
 		cin >> id;
-		count++;
 	}
-	void getData(void)
+	void getId(void)
 	{
-		cout << "The ID of Employee is " << id << " And Number of Employees are " << count << endl;
+		cout << "The ID of Employee is " << id << endl;
 	}
-	// Static Member Functions/ Methods
-	static void getCount(void){
-		// cnt<<id; IT will not work!
-		cout<<"The value of count is "<<count<<endl;
-	}
-	
 };
 
-int Employee ::count; // Default Value is 0. And if it has to be changed it should be changed here(Outside class) not inside class.
-//Count is the static Data Member of the Employee class
 int main()
 {
-	Employee ayush, tan, mallu;
-	ayush.setData();
-	ayush.getData();
-	
-	Employee::getCount(); //Static Member functions are called through class Name.
+	// Employee bishen, tan, mallu, kasshu;
+	// bishen.setId();
+	// bishen.getId();
+	//Intead of  ^ we can  use --> 
 
-	tan.setData();
-	tan.getData();
+	Employee parivaar[4];//Array of Object
+	for (int i = 0; i < 4; i++)
+	{
 
-	Employee::getCount();
-	
-	mallu.setData();
-	mallu.getData();
-	
-	Employee::getCount();
-	
+		parivaar[i].setId();
+		parivaar[i].getId();
+	}
+
 	return 0;
 }
