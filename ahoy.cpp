@@ -1,50 +1,37 @@
 #include <iostream>
 using namespace std;
+//<--==================  Constructors Intro  ==================-->
+// Properties   
+//It is a function and has same name as of class.   
+// IT is automatically invoked when a class is created.   
+// They do not have Return type and cannot return values.!   
+// It can have default arguments.   
+// WE cannot refer to their address.   
+class Complex
+{
+	int a, b;
 
-class c2;
-class c1{
-	int val;
-	friend void exchange(c1 &  , c2 & );
-	public:
-		void setval(int a){
-			val = a;
-		}
-		void display(void){
-			cout<<"The value of a is "<<val<<endl;
-		}
-};
-class c2{
-	int val;
-	friend void exchange(c1 &  , c2 & );
-	public:
-		void setval(int a){
-			val = a;
-		}
-		void display(void){
-			cout<<"The value of b is "<<val<<endl;
-		}
+public:
+	//Creating a Constructor. 
+	Complex(void); //Constructor Declaration --> In public section Only <--
+	void printData(void)
+	{
+		cout << "The value of a and b is " << a << " + " << b << "i" << endl;
+	}
 };
 
-void exchange(c1 & x, c2 & y){
-	int tmp = x.val;//Swapping Technique is used. by reference
-	x.val = y.val;
-	y.val = tmp;
+Complex ::Complex(void)// Default constructors -- as it takes no parameters/arguments.
+{
+	a = 10;
+	b = 2;
+	cout<<"Hello World"<<endl;
 }
 
-
-int main(){
-	c1 oc1;
-	c2 oc2;
-
-	oc1.setval(1);
-	oc2.setval(2);
-
-	oc1.display();
-	oc2.display();
-
-	exchange(oc1 , oc2);
-
-	oc1.display();
-	oc2.display();
+int main()
+{
+	Complex c1, c2, c3;
+	c1.printData();
+	c2.printData();
+	c3.printData();
 	return 0;
 }
