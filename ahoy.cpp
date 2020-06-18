@@ -1,47 +1,33 @@
 #include <iostream>
-#include <math.h>
-#include <stdlib.h>
 using namespace std;
+//Constructor Overloading
 
-class Point
+class Complex
 {
-	int x, y;
-	// int counter;
+	int a, b;
 
 public:
-	// void Ini(int * &counter)
-	// {
-	// 	counter = 0;
-	// }
-	Point(int a, int b)
-	{
-		x = a;
-		y = b;
-		// counter++;
-	}
-	
 
-	void displayPoint(void)
+	Complex(int x, int y)
 	{
-		
-		cout << "The point is (" << x << "," << y << ")." << endl;
+		a = x;
+		b = y;
 	}
-	friend void DistanceBtwPoints(Point, Point);
+	Complex(int x){
+		a = x;
+		b = 0;
+	}
+	void PrintData(void)
+	{
+		cout<<"Your Number is "<<a<<" + "<<b<<"i"<<endl;
+	}
 };
-
-void DistanceBtwPoints(Point o1, Point o2)
-{
-	float XCO = ((o1.x - o2.x) * (o1.x - o2.x));
-	float YCO = ((o1.y - o2.y) * (o1.y - o2.y));
-	cout << "The Distance Between them is " << sqrt(XCO + YCO) << endl;
-}
 
 int main()
 {
-	Point P(1,1);
-	P.displayPoint();
-	Point Q(1,1);
-	Q.displayPoint();
-	DistanceBtwPoints(P, Q);
+	Complex c1(4,6);
+	Complex c2(5);
+	c1.PrintData();
+	c2.PrintData();
 	return 0;
 }
