@@ -1,31 +1,47 @@
 #include <iostream>
+#include <math.h>
+#include <stdlib.h>
 using namespace std;
 
-class Complex
+class Point
 {
-	int a, b;
+	int x, y;
+	// int counter;
 
 public:
-	
-	Complex(int, int); 
-	void printData(void)
+	// void Ini(int * &counter)
+	// {
+	// 	counter = 0;
+	// }
+	Point(int a, int b)
 	{
-		cout << "The value of a and b is " << a << " + " << b << "i" << endl;
+		x = a;
+		y = b;
+		// counter++;
 	}
+	
+
+	void displayPoint(void)
+	{
+		
+		cout << "The point is (" << x << "," << y << ")." << endl;
+	}
+	friend void DistanceBtwPoints(Point, Point);
 };
 
-Complex ::Complex(int x, int y)//Parameterised Constructor as it takes 2 parameters.
+void DistanceBtwPoints(Point o1, Point o2)
 {
-	a = x;
-	b = y;
-	// cout<<"Hello World"<<endl;
+	float XCO = ((o1.x - o2.x) * (o1.x - o2.x));
+	float YCO = ((o1.y - o2.y) * (o1.y - o2.y));
+	cout << "The Distance Between them is " << sqrt(XCO + YCO) << endl;
 }
 
 int main()
 {
-	Complex c1(11, 12);// ----Implicit Call
-	c1.printData();
-	Complex b = Complex(2, 1);// -----Explicit Call
-	b.printData();
+	Point P(1,1);
+	P.displayPoint();
+	Point Q(1,1);
+	Q.displayPoint();
+	DistanceBtwPoints(P, Q);
 	return 0;
 }
