@@ -1,33 +1,27 @@
 #include <iostream>
 using namespace std;
-//Constructor Overloading
-
-class Complex
+//Constructors with Default Arguments.
+class Simple
 {
-	int a, b;
+private:
+	int data1, data2;
 
 public:
-
-	Complex(int x, int y)
+	Simple(int a, int b = 9)
 	{
-		a = x;
-		b = y;
+		data1 = a;
+		data2 = b;
 	}
-	Complex(int x){
-		a = x;
-		b = 0;
-	}
-	void PrintData(void)
+	void printData(void)
 	{
-		cout<<"Your Number is "<<a<<" + "<<b<<"i"<<endl;
+		cout << "The value of data is " << data1 << " and " << data2 << endl;
 	}
 };
 
 int main()
 {
-	Complex c1(4,6);
-	Complex c2(5);
-	c1.PrintData();
-	c2.PrintData();
+
+	Simple s1(1);
+	s1.printData();
 	return 0;
 }
