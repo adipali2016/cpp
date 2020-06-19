@@ -1,61 +1,43 @@
 #include <iostream>
-#include <stdlib.h>
 using namespace std;
-//Dynamic Initialization of Objects.
-class Bank
+//Copy Constructors
+//======> All Compilers automatically creates Copy COnstructors if no constructor is found!!
+class Number
 {
-    int princ;
-    int year;
-    float intrest;
-    float returns;
+    int a;
 
 public:
-    Bank() //It is necesaary to declare if a blank object has to be created.
+    Number()
     {
-
+        a = 0;
+    }//Default COnstructors - Must!
+    Number(int num)
+    {
+        a = num;
     }
-    Bank(int p, int y, double r);
-    Bank(int p, int y, int r);
+
+    Number(Number &obj)//Copy Constructor - Not Necessary to create - Read Header comment.
+    {
+        cout<<"Copy constructor called!!!"<<endl;
+        a = obj.a;
+    }
+
+    void Display(void)
+    {
+        cout << "The Number is " << a << endl;
+    }
 };
 
-Bank ::Bank(int p, int y, double r)
+int main()
 {
-    princ = p;
-    year = y;
-    intrest = r;
-    returns = princ;
-    for (int i = 0; i < year; i++)
-    {
-        returns = returns * (1 + intrest);
-    };
-    cout <<"The Value of Return " <<returns << endl;
-
+    Number x,y,z(11),z2;
+    x.Display();
+    y.Display();
+    z.Display();
+    // z1(copy constructors) - It should exactly resemble like other objects eg. x or y or z.
+    Number z1(z);
+    z1.Display();
+    // (if) z2 = z; It won't invoke copy constructor.Because z2 object was predefined.
+    // (if) Number z3 = z; It will invoke copy constructor as Object was simultaneously defined and assigned.
+    return 0;
 }
-
-Bank ::Bank(int p, int y, int r)
-{
-    princ = p;
-    year = y;
-    intrest = float(r)/100;
-    returns = princ;
-    for (int i = 0; i < year; i++)
-    {
-        returns = returns * (1 + intrest);
-    };
-    cout <<"The Value of Return " << returns << endl;
-
-}
-
-    int main()
-    {
-        Bank b1,b2,b3;
-        int p,y,R;
-        float r;
-        cout<<"Enter the Principle, Years and Rate of Intrest in Decimal"<<endl;
-        cin>>p>>y>>r;
-        b2 = Bank(p,y,r);
-        cout<<"Enter the Principle, Years and Rate of Intrest in Integer"<<endl;
-        cin>>p>>y>>R;
-        b1 = Bank(p,y,R);
-        return 0;
-    }
