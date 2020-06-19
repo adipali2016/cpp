@@ -1,27 +1,61 @@
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
-//Constructors with Default Arguments.
-class Simple
+//Dynamic Initialization of Objects.
+class Bank
 {
-private:
-	int data1, data2;
+    int princ;
+    int year;
+    float intrest;
+    float returns;
 
 public:
-	Simple(int a, int b = 9)
-	{
-		data1 = a;
-		data2 = b;
-	}
-	void printData(void)
-	{
-		cout << "The value of data is " << data1 << " and " << data2 << endl;
-	}
+    Bank() //It is necesaary to declare if a blank object has to be created.
+    {
+
+    }
+    Bank(int p, int y, double r);
+    Bank(int p, int y, int r);
 };
 
-int main()
+Bank ::Bank(int p, int y, double r)
 {
+    princ = p;
+    year = y;
+    intrest = r;
+    returns = princ;
+    for (int i = 0; i < year; i++)
+    {
+        returns = returns * (1 + intrest);
+    };
+    cout <<"The Value of Return " <<returns << endl;
 
-	Simple s1(1);
-	s1.printData();
-	return 0;
 }
+
+Bank ::Bank(int p, int y, int r)
+{
+    princ = p;
+    year = y;
+    intrest = float(r)/100;
+    returns = princ;
+    for (int i = 0; i < year; i++)
+    {
+        returns = returns * (1 + intrest);
+    };
+    cout <<"The Value of Return " << returns << endl;
+
+}
+
+    int main()
+    {
+        Bank b1,b2,b3;
+        int p,y,R;
+        float r;
+        cout<<"Enter the Principle, Years and Rate of Intrest in Decimal"<<endl;
+        cin>>p>>y>>r;
+        b2 = Bank(p,y,r);
+        cout<<"Enter the Principle, Years and Rate of Intrest in Integer"<<endl;
+        cin>>p>>y>>R;
+        b1 = Bank(p,y,R);
+        return 0;
+    }
