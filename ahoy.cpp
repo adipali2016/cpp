@@ -1,28 +1,70 @@
 #include <iostream>
 using namespace std;
 
-class Base
+class Student
 {
-protected:// Can Be Inherited.
-    int a;
-private:
-    int b;
+protected:
+    int roll_number;
+
+public:
+    void setRN(int);
+    void getRN(void);
 };
-/* <-======================== Members Inheritance  =====================->
-   _________________________________________________________________________________
-                | Public Derivation    |   Private Derivation | Protected Derivation|
-    Protected   |Protected             |    Private           | Protected           |
-    Private     |No Inheritance        |    No Inheritance    | No Inheritance      |
-    Public      |Public                |    Private           | Protected           |
-   _________________________________________________________________________________|
-*/
-class Derieved :  Base
+void Student ::setRN(int a)
 {
+    roll_number = a;
+}
+void Student ::getRN(void)
+{
+    cout << "The Roll Number is " << roll_number << endl;
+}
+
+class Exam : public Student
+{
+protected:
+    float maths;
+    float physics;
+
+public:
+    void setMarks(float, float);
+    void getMarks(void);
 };
+
+void Exam ::setMarks(float b, float a)
+{
+    maths = a;
+    physics = b;
+}
+
+void Exam ::getMarks(void)
+{
+    cout << "The marks Obtained in Physics are : " << physics << endl;
+    cout << "The marks Obtained in Maths are : " << maths << endl;
+}
+
+class Result : public Exam
+{
+protected:
+    float percentage;
+
+public:
+    void Dispaly(void)
+    {
+        getRN();
+        getMarks();
+        percentage = (physics + maths) / 2;
+        cout << "Your Percentage is " << percentage <<"%"<< endl;
+    }
+};
+
+//Student--->Exam----->Result are called Inheritance Path.
+//Student is Base class of Exam & Exam is base class of Result.
+
 int main()
 {
-    Base b;
-    Derieved d;
-    cout<<"AHoy World"<<endl;
+    Result ayush;
+    ayush.setRN(21);
+    ayush.setMarks(85, 95);
+    ayush.Dispaly();
     return 0;
 }
