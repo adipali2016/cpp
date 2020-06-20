@@ -1,50 +1,57 @@
 #include <iostream>
 using namespace std;
-//Inheritance
-class Employee
+//<==================== Single Inheritance =======================>
+class Base
 {
+    int data1;
+
 public:
-    int salary, id;
-    Employee() {}
-    Employee(int sal, int i)
-    {
-        salary = sal;
-        id = i;
-        cout << "The Employee Salary is " << sal << " and Id is " << i << endl;
-    }
+    int data2;
+    void setData();
+    int getData1();
+    int getData2();
 };
 
-/* Derieved class syntax- 
-    class {{derieved-class-name}} : {{visibility-mode}} {{base-class-name}}
-    {
-        ...members/methods/etc/
-    };
-*/
-//Default Visibility mode is private.
-//Creating a Derieved class from Employee Bas e CLass
-//Private mode: Public Members of the base class becomes the private members of derieved class
-//Public mode: Public Members of the base class becomes the public members of derieved class
-//Private members are never inherited.
-
-class Programmer : Employee
+void Base ::setData()
 {
-public:
-    int lancode = 9;
+    data1 = 11;
+    data2 = 22;
+}
+int Base ::getData1()
+{
+    return data1;
+}
 
-    Programmer(int d)
-    {
-        id = d;
-        cout <<"The Employee ID is "<< id << endl;
-        cout <<"The Employee language code is "<< lancode << endl;
-    }
+int Base ::getData2()
+{
+    return data2;
+}
+
+class Derieved : public Base
+{
+    int data3;
+
+public:
+    void process();
+    void display();
 };
 
+void Derieved ::process()
+{
+    data3 = data2 * getData1();
+}
+
+void Derieved ::display()
+{
+    cout << "value of Data 1 is " << getData1() << endl;
+    cout << "value of Data 2 is " << data2 << endl;
+    cout << "value of Data 3 is " << data3 << endl;
+}
 int main()
 {
-    cout << "Ahoy World" << endl;
-    Employee ayush(1, 100), tan(2, 200);
-    Programmer skill(100);
-    
-
+    Derieved der;
+    der.setData();
+    der.process();
+    der.display();
     return 0;
 }
