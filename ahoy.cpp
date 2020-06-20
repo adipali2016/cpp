@@ -1,70 +1,48 @@
 #include <iostream>
 using namespace std;
+//<==============Multiple Inheritance======================>
+//Syntax ---------->
 
-class Student
+// class {{Derieved}} : {{visibilty-mode}} Base 1, {{visibility-mode}} Base2
+//{class body};
+
+class Base1
 {
 protected:
-    int roll_number;
+    int base1;
 
 public:
-    void setRN(int);
-    void getRN(void);
-};
-void Student ::setRN(int a)
-{
-    roll_number = a;
-}
-void Student ::getRN(void)
-{
-    cout << "The Roll Number is " << roll_number << endl;
-}
-
-class Exam : public Student
-{
-protected:
-    float maths;
-    float physics;
-
-public:
-    void setMarks(float, float);
-    void getMarks(void);
-};
-
-void Exam ::setMarks(float b, float a)
-{
-    maths = a;
-    physics = b;
-}
-
-void Exam ::getMarks(void)
-{
-    cout << "The marks Obtained in Physics are : " << physics << endl;
-    cout << "The marks Obtained in Maths are : " << maths << endl;
-}
-
-class Result : public Exam
-{
-protected:
-    float percentage;
-
-public:
-    void Dispaly(void)
+    void setbase1(int a)
     {
-        getRN();
-        getMarks();
-        percentage = (physics + maths) / 2;
-        cout << "Your Percentage is " << percentage <<"%"<< endl;
+        base1 = a;
     }
 };
+class Base2
+{
+protected:
+    int base2;
 
-//Student--->Exam----->Result are called Inheritance Path.
-//Student is Base class of Exam & Exam is base class of Result.
-
+public:
+    void setbase2(int a)
+    {
+        base2 = a;
+    }
+};
+class Derieved : public Base1, public Base2
+{
+public:
+    void Display()
+    {
+        cout << "The value of Base 1 is " << base1 << endl;
+        cout << "The value of Base 2 is " << base2 << endl;
+        cout << "The value of Sum is " << base2 + base1 << endl;
+    }
+};
 int main()
 {
-    Result ayush;
-    ayush.setRN(21);
-    ayush.setMarks(85, 95);
-    ayush.Dispaly();
+    Derieved d1;
+    d1.setbase1(12);
+    d1.setbase2(24);
+    d1.Display();
     return 0;
 }
