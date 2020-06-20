@@ -1,36 +1,50 @@
 #include <iostream>
 using namespace std;
-//Destructors - Never takes argument and never return values.
-//When Compiler realizes that there is no need of objects, it destroys it. 
-int count = 0;
-class num
+//Inheritance
+class Employee
 {
-private:
-    
 public:
-    num(){
-        count++;
-        cout<<"This is a time when constructor is called for Object Number "<<count<<endl;
+    int salary, id;
+    Employee() {}
+    Employee(int sal, int i)
+    {
+        salary = sal;
+        id = i;
+        cout << "The Employee Salary is " << sal << " and Id is " << i << endl;
     }
-
-    ~num(){
-        cout<<"Destructor called for object number "<<count--<<endl;
-    }
-    
 };
 
-
-int main(){
-    cout<<"We are inside our main function."<<endl;
-    cout<<"Creating 1st object  n1"<<endl;
-    num n1;
+/* Derieved class syntax- 
+    class {{derieved-class-name}} : {{visibility-mode}} {{base-class-name}}
     {
-        cout<<"Entering this block."<<endl;
-        cout<<"Creating 2 more Objects "<<endl;
-        num n2,n3;
-        
-        
+        ...members/methods/etc/
+    };
+*/
+//Default Visibility mode is private.
+//Creating a Derieved class from Employee Bas e CLass
+//Private mode: Public Members of the base class becomes the private members of derieved class
+//Public mode: Public Members of the base class becomes the public members of derieved class
+//Private members are never inherited.
+
+class Programmer : Employee
+{
+public:
+    int lancode = 9;
+
+    Programmer(int d)
+    {
+        id = d;
+        cout <<"The Employee ID is "<< id << endl;
+        cout <<"The Employee language code is "<< lancode << endl;
     }
-    cout<<"Back to main"<<endl;
+};
+
+int main()
+{
+    cout << "Ahoy World" << endl;
+    Employee ayush(1, 100), tan(2, 200);
+    Programmer skill(100);
+    
+
     return 0;
 }
