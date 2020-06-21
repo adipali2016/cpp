@@ -7,7 +7,7 @@ class Base1
     public:
     void greet()
     {
-        cout<<"Ahoy, HOw are you?"<<endl;
+        cout<<"Ahoy, How are you?"<<endl;
     }    
 
 };
