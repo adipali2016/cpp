@@ -1,81 +1,67 @@
 #include <iostream>
-#include <stdlib.h>
-#include <math.h>
-#include <string>
 using namespace std;
-//Calculators Exercise
+//<==================== Ambiguity Resolution in inheritance. =======================>
 
-const double pi = 3.14259;
-
-class SimpleCalculator //Takes input of 2 numbers and performs +, - , *, 
+class Base1
 {
     public:
-    
-    float subtract(float, float);
-    float multiply(float, float);
-    float divide(float, float);
+    void greet()
+    {
+        cout<<"Ahoy, HOw are you?"<<endl;
+    }    
+
 };
 
-
-float SimpleCalculator :: subtract(float a, float b)
-{
-    return a-b;
-}
-
-float SimpleCalculator :: multiply(float a, float b)
-{
-    return a*b;
-}
-
-float SimpleCalculator :: divide(float a, float b)
-{
-    return a/b;
-}
-
-class ScientificCalculator //Takes input of 2 numbers and performs any 4 scientific operations.
+class Base2
 {
     public:
-    double sinefunc(double a);
-    double cosfunc(double a);
-    double tanfunc(double a);
-    float logfunc(float a);
+    void greet()
+    {
+        cout<<"Hello, How are you?"<<endl;
+    }
 };
 
-double ScientificCalculator :: sinefunc(double a)
+class Derieved : public Base1, public Base2
 {
-    return sin(a);
-}
-double ScientificCalculator :: cosfunc(double a)
-{
-    return cos(a);
-}
-double ScientificCalculator :: tanfunc(double a)
-{
-    return tan(a);
-}
-float ScientificCalculator :: logfunc(float a)
-{
-    return log10(a);
-}
-
-class HybridCalculator : public SimpleCalculator, public ScientificCalculator
-{
-        
+    public:
+    void greet()
+    {
+        Base2::greet();//Ambiguity Resolved
+    }
 };
-int main()
-{
-    HybridCalculator h1;
-    
 
-    cout<<h1.subtract(2,4)<<endl;
-    cout<<h1.multiply(2,4)<<endl;
-    cout<<h1.divide(2,4)<<endl;
-    cout<<h1.sinefunc(pi/6)<<endl;
-    cout<<h1.cosfunc(pi/3)<<endl;
-    cout<<h1.tanfunc(pi/4)<<endl;
-    cout<<h1.logfunc(100)<<endl;
-      
+class B
+{
+    public:
+    void say()
+    {
+        cout<<"Hello World"<<endl;
+    }
+   
+};
+class D : public B
+{
+    public:
+    void say()
+    {
+        cout<<"Ahoy World"<<endl;
+    }
+    //Say will be overwritten!!! Because of Inheritance property.....
+   
+};
+
+int main(){
+    /* Example 1
+    Base1 b1;
+    Base2 b2;
+    b1.greet();
+    b2.greet();
+    Derieved d1;
+    d1.greet();
+    */
+   B b1;
+   b1.say();
+   D d1;
+   d1.say();
     return 0;
 }
-
-//Display Respective Results --- && use code reusability
