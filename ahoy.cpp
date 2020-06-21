@@ -45,7 +45,7 @@ class D : public B
     public:
     void say()
     {
-        cout<<"Ahoy World"<<endl;
+        cout<<"Ahoy World !"<<endl;
     }
     //Say will be overwritten!!! Because of Inheritance property.....
    
