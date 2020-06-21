@@ -8,6 +8,7 @@ class Base1
     void greet()
     {
         cout<<"Ahoy, How are you?"<<endl;
+	cout<<"This is to test the code on kali"<<endl;
     }    
 
 };
