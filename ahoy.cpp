@@ -1,67 +1,79 @@
 #include <iostream>
 using namespace std;
-//<==================== Ambiguity Resolution in inheritance. =======================>
+//Virtual Base Classes - Helps in resolving ambiguity and duplicatde inheritance in Hyprid/Virtual Inheritance
+//Student -----> Test & Sports -----> Result
+//Syntax -
 
-class Base1
+class Student // Student is a Virtual Base Class.
 {
+    protected:
+    int roll_no;
     public:
-    void greet()
+    void setNum(int a)
     {
-        cout<<"Ahoy, HOw are you?"<<endl;
+        roll_no  = a;
+    }
+    void printNu()
+    {
+        cout<<"The roll Number  is "<<roll_no<<endl;
+    }
+
+};
+
+class Test : virtual public Student
+{
+    protected:
+    float maths, physics;
+    public:
+    void setMarks(float a, float b)
+    {
+        maths = a;
+        physics = b;
+
+    }
+    void getMarks(void)
+    {
+        cout<<"Your Result is here :"<<endl
+            <<"Maths : "<<maths<<endl
+            <<"Physics : "<<physics<<endl;
+    }
+};
+
+class Sports : virtual public Student
+{
+    protected:
+    float score;
+    public:
+    void setScore(int s)
+    {
+        score = s;
+    }
+    void getScore()
+    {
+        cout<<"Your score is "<<score<<endl;
+    }
+
+};
+
+class Result : public Test, public Sports
+{
+    private:
+    float Total;
+    public:
+    void Display()
+    {
+        Total = maths + physics + score;
+        printNu();
+        getMarks();
+        getScore();
+        cout<<"Your Total score is : "<<Total/3<<endl;
     }    
-
 };
-
-class Base2
-{
-    public:
-    void greet()
-    {
-        cout<<"Hello, How are you?"<<endl;
-    }
-};
-
-class Derieved : public Base1, public Base2
-{
-    public:
-    void greet()
-    {
-        Base2::greet();//Ambiguity Resolved
-    }
-};
-
-class B
-{
-    public:
-    void say()
-    {
-        cout<<"Hello World"<<endl;
-    }
-   
-};
-class D : public B
-{
-    public:
-    void say()
-    {
-        cout<<"Ahoy World"<<endl;
-    }
-    //Say will be overwritten!!! Because of Inheritance property.....
-   
-};
-
 int main(){
-    /* Example 1
-    Base1 b1;
-    Base2 b2;
-    b1.greet();
-    b2.greet();
-    Derieved d1;
-    d1.greet();
-    */
-   B b1;
-   b1.say();
-   D d1;
-   d1.say();
+    Result ayush;
+    ayush.setNum(27);
+    ayush.setMarks(95,85);
+    ayush.setScore(75);
+    ayush.Display();
     return 0;
 }
