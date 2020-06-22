@@ -4,7 +4,7 @@ using namespace std;
 //Student -----> Test & Sports -----> Result
 //Syntax -
 
-class Student // Student is a Virtual Base Class.
+class Student // Student is a Virtual Base Class
 {
     protected:
     int roll_no;
