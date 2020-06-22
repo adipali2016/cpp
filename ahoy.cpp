@@ -1,79 +1,61 @@
 #include <iostream>
 using namespace std;
-//Virtual Base Classes - Helps in resolving ambiguity and duplicatde inheritance in Hyprid/Virtual Inheritance
-//Student -----> Test & Sports -----> Result
-//Syntax -
-
-class Student // Student is a Virtual Base Class
+//Use of constructors in Inheritance====->
+class Base1
 {
-    protected:
-    int roll_no;
-    public:
-    void setNum(int a)
-    {
-        roll_no  = a;
-    }
-    void printNu()
-    {
-        cout<<"The roll Number  is "<<roll_no<<endl;
-    }
+    int data1;
 
+public:
+    Base1(int a)
+    {
+        data1 = a;
+        cout << "Base1 class Constructor called" << endl;
+    }
+    void printData1()
+    {
+        cout << "The value of data is " << data1 << endl;
+    }
 };
-
-class Test : virtual public Student
+class Base2
 {
-    protected:
-    float maths, physics;
-    public:
-    void setMarks(float a, float b)
-    {
-        maths = a;
-        physics = b;
+    int data2;
 
-    }
-    void getMarks(void)
+public:
+    Base2(int a)
     {
-        cout<<"Your Result is here :"<<endl
-            <<"Maths : "<<maths<<endl
-            <<"Physics : "<<physics<<endl;
+        data2 = a;
+        cout << "Base2 class Constructor called" << endl;
+    }
+    void printData2()
+    {
+        cout << "The value of data is " << data2 << endl;
     }
 };
 
-class Sports : virtual public Student
+class Derieved : public Base2, public Base1
 {
-    protected:
-    float score;
-    public:
-    void setScore(int s)
-    {
-        score = s;
-    }
-    void getScore()
-    {
-        cout<<"Your score is "<<score<<endl;
-    }
+    int der1, der2;
 
+public:
+    Derieved(int a, int b, int c, int d) : Base1(a), Base2(b)
+    {
+        der1 = c;
+        der2 = d;
+        cout << "Derieved called Constructor called " << endl;
+    }
+    void printDataD()
+    {
+        cout << "The value of Derievd1 is " << der1 << endl;
+        cout << "The value of Derievd2 is " << der2 << endl;
+    }
 };
 
-class Result : public Test, public Sports
+int main()
 {
-    private:
-    float Total;
-    public:
-    void Display()
-    {
-        Total = maths + physics + score;
-        printNu();
-        getMarks();
-        getScore();
-        cout<<"Your Total score is : "<<Total/3<<endl;
-    }    
-};
-int main(){
-    Result ayush;
-    ayush.setNum(27);
-    ayush.setMarks(95,85);
-    ayush.setScore(75);
-    ayush.Display();
+    Derieved D(1, 2, 3, 4);
+    D.printData1();
+    D.printData2();
+    D.printDataD();
+
     return 0;
 }
