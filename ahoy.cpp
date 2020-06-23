@@ -1,41 +1,27 @@
 #include <iostream>
 using namespace std;
-class ShopItem
+// this pointers
+class A
 {
-    int id;
-    float price;
+    int a;
     public:
-    void setData(int a, float b)
-    {
-        id = a;
-        price = b;
-    }
-    void getData()
-    {
-        cout<<"The price of item Id : "<<id
-            <<" is : "<<price<<endl;
-    }
+        // A& setData(int a)
+        void setData(int a)
+        {
+          this->a = a;// this - is a keyword which is a pointer which points to the object which invokes the member function. In other words || (A* this) = (this)
+        //   return *this;
+        }
+        void getData()
+        {
+            cout<<"The value of a is "<<a<<endl;
+        }
 };
 
-int main()
-{
-    ShopItem* ptr = new ShopItem[10];
-    ShopItem* ptrTemp = ptr;//Necesaary for Running Second Loop
-    int p;
-    float q;
-    for (int i = 0; i < 10; i++)
-    {
-        cout<<" Enter Id and Price of Item "<< i+1<<endl;
-        cin>>p>>q;
-        // (*ptr).setData(p,q);
-        ptr->setData(p,q);
-        ptr++;
-    }
-    for (int i = 0; i < 10; i++)
-    {
-        ptrTemp->getData();
-        ptrTemp++;
-    }
+int main(){
+    A b;
+    // b.setData(4).getData();
+    b.setData(4);
+    b.getData();
     
     return 0;
 }
