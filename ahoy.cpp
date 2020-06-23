@@ -1,42 +1,41 @@
 #include <iostream>
 using namespace std;
-//Pointers in objects && Arrow Operators(->).
-//ALternative of (*p). == p->
-
-class Complex
+class ShopItem
 {
-    int real, imaginary;
+    int id;
+    float price;
     public:
+    void setData(int a, float b)
+    {
+        id = a;
+        price = b;
+    }
     void getData()
     {
-        cout<<"The real part is "<<real<<endl;
-        cout<<"The imaginary part is "<<imaginary<<endl;
-
+        cout<<"The price of item Id : "<<id
+            <<" is : "<<price<<endl;
     }
-    void setData(int a, int b)
-    {
-        real = a;
-        imaginary = b;
-    }
-
 };
 
-int main(){
-    // Complex c1;
-    // Complex *ptr = &c1;
-    Complex * ptr = new Complex;
-    // (*ptr).setData(121,111); OR --->
-    ptr->setData(121,111);
-    // (*ptr).getData();
-    ptr->getData();
-
-    //Array of Objects
-    Complex *ptr1 = new Complex[2];
-    (*ptr1).setData(1,1);
-    (*ptr1).getData();
-    (*(ptr1+1)).setData(4,2);
-    (*(ptr1+1)).getData();
-    (ptr1+2)->setData(12,11);
-    (ptr1+2)->getData();
+int main()
+{
+    ShopItem* ptr = new ShopItem[10];
+    ShopItem* ptrTemp = ptr;//Necesaary for Running Second Loop
+    int p;
+    float q;
+    for (int i = 0; i < 10; i++)
+    {
+        cout<<" Enter Id and Price of Item "<< i+1<<endl;
+        cin>>p>>q;
+        // (*ptr).setData(p,q);
+        ptr->setData(p,q);
+        ptr++;
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        ptrTemp->getData();
+        ptrTemp++;
+    }
+    
     return 0;
 }
