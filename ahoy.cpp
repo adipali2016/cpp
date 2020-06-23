@@ -1,28 +1,42 @@
 #include <iostream>
 using namespace std;
-//Pointers -- new keyword & delete keyword+operator -- control over memory
+//Pointers in objects && Arrow Operators(->).
+//ALternative of (*p). == p->
 
-int main()
+class Complex
 {
+    int real, imaginary;
+    public:
+    void getData()
+    {
+        cout<<"The real part is "<<real<<endl;
+        cout<<"The imaginary part is "<<imaginary<<endl;
 
-    int* p = new int(4);
-    cout<<"The value at adress p is "<<*p<<endl<<p<<endl<<&p<<endl;
+    }
+    void setData(int a, int b)
+    {
+        real = a;
+        imaginary = b;
+    }
 
-    int * arr = new int[3];
-    arr[0] = 11;
-    *(arr+1) = 12;
-    arr[2] = 13;
-    // delete[] arr;
-    cout<<"The value of arr [0] is "<<arr[0]<<endl;
-    cout<<"The value of arr [1] is "<<arr[1]<<endl;
-    cout<<"The value of arr [2] is "<<arr[2]<<endl;
-    cout<<"The value of arr is "<<arr<<endl;
-    cout<<"The value of arr is "<<&arr<<endl;
+};
 
-    int ar[3] = {0,1,2};
-    cout<<ar[1]<<endl;
-    cout<<ar<<endl;
-    cout<<ar+1<<endl;
+int main(){
+    // Complex c1;
+    // Complex *ptr = &c1;
+    Complex * ptr = new Complex;
+    // (*ptr).setData(121,111); OR --->
+    ptr->setData(121,111);
+    // (*ptr).getData();
+    ptr->getData();
 
+    //Array of Objects
+    Complex *ptr1 = new Complex[2];
+    (*ptr1).setData(1,1);
+    (*ptr1).getData();
+    (*(ptr1+1)).setData(4,2);
+    (*(ptr1+1)).getData();
+    (ptr1+2)->setData(12,11);
+    (ptr1+2)->getData();
     return 0;
 }
