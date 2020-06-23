@@ -1,28 +1,26 @@
 #include <iostream>
 using namespace std;
-//Initialization List in Constructors
-/*
-Syntax - 
-constructoe(argument) : initialization-section
+//Pointers -- new keyword & delete keyword+operator -- control over memory
 
-{
-         body
-}
-*/
-
-class Test
-{
-    int a, b;//Declaration order matters
-
-public:
-    // Test(int i, int j) : a(i), b(a+j)
-    Test(int i, int j) : b(j), a(b+i) // Attentiom Here !!!!
-    {
-        cout << "A"<< endl<<a<<endl<<b<< endl;
-    }
-};
 int main()
 {
-    Test T(1,1);
+
+    int* p = new int(4);
+    cout<<"The value at adress p is "<<*p<<endl;
+
+    int * arr = new int[3];
+    arr[0] = 11;
+    *(arr+1) = 12;
+    arr[2] = 13;
+    // delete[] arr;
+    cout<<"The value of arr [0] is "<<arr[0]<<endl;
+    cout<<"The value of arr [1] is "<<arr[1]<<endl;
+    cout<<"The value of arr [2] is "<<arr[2]<<endl;
+
+    int ar[3] = {0,1,2};
+    cout<<ar[1]<<endl;
+    cout<<ar<<endl;
+    cout<<ar+1<<endl;
+
     return 0;
 }
