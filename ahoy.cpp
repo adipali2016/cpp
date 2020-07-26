@@ -1,80 +1,35 @@
 #include <iostream>
-#include <string>
-//Abstract Class and Pure Virtual Function.
-//Pure Virtual Function. - An inherited class should override it!
-//Abstract Class is not used to make class. & it has atleast one virtual function.
-//Code may not work.
+#include <fstream>
+
+
+/*
+The useful classes for C++ are :
+   1. fstreambase
+   2. ifstream --> derieved from fstreambase
+   3. ofstream --> derieved from fstreambase
+*/
+
+/*
+    Working with files in C++, you wil have to open it, 2 ways to open -
+    1. Using the constructor
+    2. Using the member function open() of the class.
+*/
 
 using namespace std;
+ int main()
+ {
+    string st;
+    //Opening a file using Constructor and Wirting it.
+   /*
+    ofstream out("sample.txt");
+    out<<a;*/
 
-class Ayush
-{
-protected:
-    string title;
-    float num;
-
-public:
-    Ayush(String s, float r)
-    {
-        strcpy(title, s)
-        {
-            num = r;
-        }
-    }
-    virtual void display() = 0; //Do Nothing function --> Pure virtual function
-};
-
-class AyushVideo : public Ayush
-{
-    int videolength;
-
-public:
-    AyushVideo(String s, float r, int vl) : CWH(s, r)
-    {
-        videolength = vl;
-    }
-    void display()
-    {
-        cout << "This is title " << title << endl;
-        cout << "This is Rating " << num << endl;
-        cout << "This is video length " << vl << endl;
-    }
-};
-class AyushText : public Ayush
-{
-    int text;
-
-public:
-    AyushText(String s, float r, int wc) : CWH(s, r)
-    {
-        text = wc;
-    }
-    void display()
-    {
-
-        cout << "This is a title " << title << endl;
-        cout << "This is a Rating " << num << endl;
-        cout << "This is text length " << wc << endl;
-    }
-};
-
-int main()
-{
-    String title;
-    float rating, vlen;
-
-    title = "This is title";
-    vlen = 44;
-    rating = 3;
-
-    AyushVideo Video(title, rating, vlen);
-    Video.display();
-}
-//Rules for definind Virtual Function
-/*
-1. They are not static.
-2. They are accessed by pointers.
-3. Virtual function can be a friend of another class.
-4. A virtual funtion in a Base class might not be used.
-5. If a virtual function defined in the base class it is not necessary to redefine it. It will call the base class virtual function.
-*/
+   //Opening a file using constructor and reading it.
+   /*
+   ifstream in("sample2.txt");
+   // in>>st;
+   getline(in, st);
+   cout<<st<<endl;
+    return 0;
+    */
+ }
