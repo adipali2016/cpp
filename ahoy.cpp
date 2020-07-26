@@ -1,5 +1,9 @@
 #include <iostream>
 #include <string>
+//Abstract Class and Pure Virtual Function.
+//Pure Virtual Function. - An inherited class should override it!
+//Abstract Class is not used to make class. & it has atleast one virtual function.
+//Code may not work.
 
 using namespace std;
 
@@ -17,7 +21,7 @@ public:
             num = r;
         }
     }
-    virtual void display() {}
+    virtual void display() = 0; //Do Nothing function --> Pure virtual function
 };
 
 class AyushVideo : public Ayush
