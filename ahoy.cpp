@@ -32,4 +32,11 @@ using namespace std;
    cout<<st<<endl;
     return 0;
     */
+    
+    /*
+      tellg() function -- This function is present in istream class. It returns the position of the current location of the reader in the input system.
+      tellp() function -- This function is present in ostream class. It returns the position of the current location of the reader in the output system.
+      
+      seekg() function -- This is a function in the iostream library (part of the standard library) that allows you to seek to an arbitrary position in a file.
+    */
  }
